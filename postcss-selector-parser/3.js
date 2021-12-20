@@ -30,3 +30,10 @@ const transform = selectors => {
 };
 
 const transformed = parser(transform).processSync('h1 h2');
+
+
+const selectors = [];
+root.walkRules(rule => {
+	selectors.push(rule.selector);
+});
+console.log(`Your CSS uses ${selectors.length} selectors`);

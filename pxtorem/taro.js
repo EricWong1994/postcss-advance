@@ -13,15 +13,15 @@
 			tes = x.devicePixelRatio;
 			(v = n ? v : 1), (u = 1 / v);
 		}
-		if (a >= 640) {
-			r.style.fontSize = '40px';
-		} else {
-			if (a <= 320) {
-				r.style.fontSize = '20px';
-			} else {
-				r.style.fontSize = (a / 320) * 20 + 'px';
-			}
-		}
+if (a >= 640) {
+	r.style.fontSize = '40px';
+} else {
+	if (a <= 320) {
+		r.style.fontSize = '20px';
+	} else {
+		r.style.fontSize = (a / 320) * 20 + 'px';
+	}
+}
 	}
 	x.addEventListener('resize', function () {
 		w();
