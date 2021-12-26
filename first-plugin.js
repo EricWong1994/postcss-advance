@@ -15,7 +15,38 @@ module.exports = opts => {
 	return {
 		postcssPlugin: 'postcss-test-plugin',
 		Once: (root, { result, list, Declaration }) => {
-			console.log('root: ', root);
+			root.append({ selector: 'a' });
+			// console.log('root: ', root);
+			root.walkRules(rule => {
+				let count = 0;
+				rule.walkDecls(decl => {
+					count++;
+					// decl.assign({ prop: 'word-wrap', value: 'break-word' });
+					// decl.before('color: black');
+					// decl.after('color: black'); // 报错
+					// decl.cloneAfter(); // 报错
+					// decl.cloneAfter({ prop: '-moz-' + decl.prop });// 报错
+					// decl.cloneBefore({ prop: '-moz-' + decl.prop });
+					// insertBefore:
+					// rule.insertBefore(
+					// 	decl,
+					// 	decl.clone({ prop: '-webkit-' + decl.prop })
+					// );
+					// rule.insertAfter(
+					// 	decl,
+					// 	decl.clone({ prop: '-webkit-' + decl.prop })
+					// ); // 死循环
+					if (count === 2) {
+						// break; // Unsyntactic break
+						return; // return 终止不了walkDecls方法
+					}
+					// console.log('decl.parent.nodes[0]: ', decl.parent.nodes[0]);
+				});
+				// rule.each(decl => {
+				// 	decl.after('color: black'); // 报错
+				// 	console.log('decl: ', decl);
+				// });
+			});
 			// let color = new Declaration({ prop: 'color', value: 'black' });
 			// root.append(color);
 			// root.walkRules(function (rule) {
